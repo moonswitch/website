@@ -17,7 +17,8 @@ export function Hero({ title, subtitle, children, showRocket }: HeroProps) {
             src="/images/rocket-brand-color.png"
             alt=""
             fill
-            className="object-cover object-right opacity-30"
+            className="object-cover opacity-30"
+            style={{ objectPosition: "right -15vw top -25vw" }}
             priority
             sizes="100vw"
           />

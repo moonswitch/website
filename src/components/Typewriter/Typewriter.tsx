@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 
 type TypewriterProps = {
   words: string[];
@@ -18,6 +18,12 @@ export function Typewriter({
   className = "",
 }: TypewriterProps) {
   const textRef = useRef<HTMLSpanElement>(null);
+
+  // Reserve width for the longest word to prevent layout shift
+  const longestWord = useMemo(
+    () => words.reduce((a, b) => (a.length >= b.length ? a : b), ""),
+    [words],
+  );
 
   useEffect(() => {
     const el = textRef.current;
@@ -70,8 +76,15 @@ export function Typewriter({
   }, [words, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <span className={className}>
-      <span ref={textRef} />
+    <span className={`inline-block relative ${className}`}>
+      {/* Invisible sizer to reserve width for longest word */}
+      <span className="invisible" aria-hidden="true">{longestWord}</span>
+      {/* Visible typed text — GPU-promoted layer to avoid Chrome reflow jitter */}
+      <span
+        ref={textRef}
+        className="absolute left-0 top-0"
+        style={{ willChange: "contents", contain: "layout style" }}
+      />
       <span className="animate-blink">|</span>
     </span>
   );

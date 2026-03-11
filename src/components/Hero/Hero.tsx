@@ -9,10 +9,26 @@ type HeroProps = {
 
 export function Hero({ title, subtitle, children, showRocket }: HeroProps) {
   return (
-    <section className="bg-gradient-to-br from-dark-teal to-charcoal">
-      <div className="mx-auto flex max-w-7xl items-center px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-br from-dark-teal to-charcoal">
+      {/* Rocket background image — spans full hero, dimmed, rocket to the right */}
+      {showRocket && (
+        <div className="pointer-events-none absolute inset-0">
+          <Image
+            src="/images/rocket-brand-color.png"
+            alt=""
+            fill
+            className="object-cover object-right opacity-30"
+            priority
+            sizes="100vw"
+          />
+          {/* Gradient overlay: solid on the left fading to transparent on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-dark-teal from-10% via-dark-teal/80 via-40% to-transparent" />
+        </div>
+      )}
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8">
         {/* Text content */}
-        <div className={showRocket ? "flex-1" : "w-full"}>
+        <div className={showRocket ? "max-w-2xl" : "w-full"}>
           <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
             {title}
           </h1>
@@ -23,20 +39,6 @@ export function Hero({ title, subtitle, children, showRocket }: HeroProps) {
           )}
           {children && <div className="mt-8">{children}</div>}
         </div>
-
-        {/* Rocket image */}
-        {showRocket && (
-          <div className="relative hidden flex-shrink-0 md:block md:w-64 lg:w-80">
-            <Image
-              src="/images/rocket-brand-color.png"
-              alt="Moonswitch rocket"
-              width={320}
-              height={400}
-              className="object-contain"
-              priority
-            />
-          </div>
-        )}
       </div>
     </section>
   );

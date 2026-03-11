@@ -12,9 +12,9 @@ type TypewriterProps = {
 
 export function Typewriter({
   words,
-  typingSpeed = 60,
-  deletingSpeed = 35,
-  pauseDuration = 1500,
+  typingSpeed = 30,
+  deletingSpeed = 20,
+  pauseDuration = 2000,
   className = "",
 }: TypewriterProps) {
   const [wordIndex, setWordIndex] = useState(0);

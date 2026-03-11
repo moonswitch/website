@@ -15,34 +15,36 @@
   --font-sans: var(--font-roboto);
 }
 
-/* Base typography per brand style guide */
-body {
-  background: #ffffff;
-  color: #585858;
-  font-weight: 300;
-  line-height: 1.5;
-}
+/* Base typography per brand style guide — in @layer base so Tailwind utilities can override */
+@layer base {
+  body {
+    background: #ffffff;
+    color: #585858;
+    font-weight: 300;
+    line-height: 1.5;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #373737;
-  font-weight: 400;
-  line-height: 1.15;
-}
+  h1, h2, h3, h4, h5, h6 {
+    color: #373737;
+    font-weight: 400;
+    line-height: 1.15;
+  }
 
-h1 { font-size: 3.75rem; }
-h2 { font-size: 2.375rem; }
-h3 { font-size: 1.875rem; }
-h4 { font-size: 1.375rem; }
-h5 { font-size: 1.125rem; }
-h6 { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; }
+  h1 { font-size: 3.75rem; }
+  h2 { font-size: 2.375rem; }
+  h3 { font-size: 1.875rem; }
+  h4 { font-size: 1.375rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; }
 
-a {
-  color: #3A728B;
-}
+  a {
+    color: #3A728B;
+  }
 
-blockquote {
-  color: #3A728B;
-  font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 1.5;
+  blockquote {
+    color: #3A728B;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
 }

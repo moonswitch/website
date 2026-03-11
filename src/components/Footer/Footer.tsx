@@ -32,7 +32,7 @@ export const Footer = () => {
 
           {/* Column 2: Services */}
           <div>
-            <h3 className="mb-4 text-sm font-medium uppercase tracking-wider">
+            <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-white/60">
               Services
             </h3>
             <ul className="space-y-2">

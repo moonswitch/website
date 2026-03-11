@@ -64,16 +64,18 @@ export function Header() {
               </button>
 
               {servicesOpen && (
-                <div className="absolute left-0 top-full mt-1 w-56 rounded-md bg-dark-teal/95 py-2 shadow-lg ring-1 ring-black/10 backdrop-blur-sm">
-                  {servicesLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block px-4 py-2 text-sm font-light text-white transition-colors hover:bg-white/10"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+                <div className="absolute left-0 top-full w-56 pt-2">
+                  <div className="rounded-md bg-dark-teal/95 py-2 shadow-lg ring-1 ring-black/10 backdrop-blur-sm">
+                    {servicesLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="block px-4 py-2 text-sm font-light text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

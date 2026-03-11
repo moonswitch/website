@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-teal: #3A728B;
+  --color-dark-teal: #325362;
+  --color-logo-blue: #6AAACD;
+  --color-mustard: #D4A012;
+  --color-rose: #96645E;
+  --color-charcoal: #2E2E2E;
+  --color-black: #171717;
+  --color-dark-grey: #373737;
+  --color-medium-grey: #585858;
+  --color-grey: #C5C5C5;
+  --color-light-grey: #F5F5F5;
+  --font-sans: var(--font-roboto);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base typography per brand style guide */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #585858;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #373737;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+h1 { font-size: 3.75rem; }
+h2 { font-size: 2.375rem; }
+h3 { font-size: 1.875rem; }
+h4 { font-size: 1.375rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; }
+
+a {
+  color: #3A728B;
+}
+
+blockquote {
+  color: #3A728B;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.5;
 }

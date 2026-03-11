@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 type HeroProps = {
-  title: string;
+  title: React.ReactNode;
   subtitle?: string;
   children?: React.ReactNode;
   showRocket?: boolean;

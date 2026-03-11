@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/Hero";
 import { CtaBanner } from "@/components/CtaBanner";
 import { ServiceCard } from "@/components/ServiceCard";
+import { Typewriter } from "@/components/Typewriter";
 
 export const metadata: Metadata = {
   title: "Moonswitch - Cloud Strategy, DevOps, Managed Kubernetes",
@@ -68,7 +69,17 @@ export default function Home() {
     <>
       <Hero
         showRocket={true}
-        title="We Are Experts"
+        title={
+          <>
+            We Are{" "}
+            <Typewriter
+              words={["DevOps", "Kubernetes", "AWS", "Infrastructure", "Deployment"]}
+              className="text-logo-blue"
+            />
+            <br />
+            Experts
+          </>
+        }
         subtitle="We're passionate about automated deployments, 1-click environments, and x-ray vision into performance and health. Our mission is to enable teams to deliver quickly and reliably."
       />
 

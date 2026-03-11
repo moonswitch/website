@@ -13,6 +13,11 @@
   --color-grey: #C5C5C5;
   --color-light-grey: #F5F5F5;
   --font-sans: var(--font-roboto);
+  --animate-blink: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { opacity: 0; }
 }
 
 /* Base typography per brand style guide — in @layer base so Tailwind utilities can override */

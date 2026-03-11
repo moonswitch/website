@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useRef } from "react";
 
 type TypewriterProps = {
   words: string[];
@@ -17,39 +17,61 @@ export function Typewriter({
   pauseDuration = 2000,
   className = "",
 }: TypewriterProps) {
-  const [wordIndex, setWordIndex] = useState(0);
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const currentWord = words[wordIndex];
-
-  const tick = useCallback(() => {
-    if (isDeleting) {
-      setText(currentWord.substring(0, text.length - 1));
-      if (text.length === 0) {
-        setIsDeleting(false);
-        setWordIndex((prev) => (prev + 1) % words.length);
-      }
-    } else {
-      setText(currentWord.substring(0, text.length + 1));
-    }
-  }, [text, isDeleting, currentWord, words.length]);
+  const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Pause at full word before deleting
-    if (!isDeleting && text === currentWord) {
-      const timeout = setTimeout(() => setIsDeleting(true), pauseDuration);
-      return () => clearTimeout(timeout);
-    }
+    const el = textRef.current;
+    if (!el) return;
 
-    const speed = isDeleting ? deletingSpeed : typingSpeed;
-    const timeout = setTimeout(tick, speed);
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, currentWord, tick, typingSpeed, deletingSpeed, pauseDuration]);
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let rafId: number;
+    let lastTick = 0;
+    let isPaused = false;
+
+    const animate = (timestamp: number) => {
+      if (lastTick === 0) lastTick = timestamp;
+      const elapsed = timestamp - lastTick;
+      const currentWord = words[wordIndex];
+
+      if (isPaused) {
+        if (elapsed >= pauseDuration) {
+          isPaused = false;
+          isDeleting = true;
+          lastTick = timestamp;
+        }
+      } else if (isDeleting) {
+        if (elapsed >= deletingSpeed) {
+          charIndex--;
+          el.textContent = currentWord.substring(0, charIndex);
+          lastTick = timestamp;
+          if (charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+          }
+        }
+      } else {
+        if (elapsed >= typingSpeed) {
+          charIndex++;
+          el.textContent = currentWord.substring(0, charIndex);
+          lastTick = timestamp;
+          if (charIndex === currentWord.length) {
+            isPaused = true;
+          }
+        }
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }, [words, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
     <span className={className}>
-      {text}
+      <span ref={textRef} />
       <span className="animate-blink">|</span>
     </span>
   );

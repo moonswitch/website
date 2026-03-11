@@ -11,6 +11,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.moonswitch.com"),
   title: "Moonswitch - Cloud Strategy, DevOps, Managed Kubernetes",
   description:
     "Moonswitch provides expert DevOps consulting, managed Kubernetes services, and cloud migration solutions to help your team deliver quickly and reliably.",

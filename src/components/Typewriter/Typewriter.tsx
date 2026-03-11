@@ -12,8 +12,8 @@ type TypewriterProps = {
 
 export function Typewriter({
   words,
-  typingSpeed = 10,
-  deletingSpeed = 10,
+  typingSpeed = 60,
+  deletingSpeed = 35,
   pauseDuration = 2000,
   className = "",
 }: TypewriterProps) {
